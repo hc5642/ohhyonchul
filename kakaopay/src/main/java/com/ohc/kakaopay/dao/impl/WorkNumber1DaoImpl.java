@@ -25,18 +25,19 @@ public class WorkNumber1DaoImpl implements WorkNumber1Dao{
 		
 		List<WorkNumber1Vo> retValue = new ArrayList<WorkNumber1Vo>();
 		StringBuffer sql = new StringBuffer("/*1. 2018년, 2019년 각 연도별 합계 금액이 가장 많은 고객을 추출하는 API 개발 */\n");
-		sql.append("SELECT YEAR, ACNM, ACNO, MAX(SUM_AMOUNT) AS MAX_AMOUNT \r\n" + 
-				"FROM (\r\n" + 
-				"	SELECT 	SUBSTR(TRXDAT, 1, 4) AS YEAR, ACNO, 	\r\n" + 
-				"		(SELECT 	ACNM FROM DATA_AC_INFO SUB_T WHERE T1.ACNO=SUB_T.ACNO) AS ACNM, 	\r\n" + 
-				"		SUM(D_AMOUNT-FEE) AS SUM_AMOUNT \r\n" + 
-				"	FROM 	(SELECT 	TRXDAT, ACNO, \r\n" + 
-				"			CASE WHEN CANCELYN='Y' THEN (AMOUNT*-1) \r\n" + 
-				"			ELSE AMOUNT END AS D_AMOUNT, FEE 	\r\n" + 
-				"		FROM DATA_TR_HISTORY ) T1 \r\n" + 
-				"	GROUP BY SUBSTR(TRXDAT, 1, 4), ACNO \r\n" + 
-				") GROUP BY YEAR ORDER BY 1"
-				+ "");
+		sql.append("SELECT YEAR, ACNM, ACNO, MAX(SUM_AMOUNT) AS MAX_AMOUNT \r\n" +  
+				 	"FROM (\r\n" +  
+				 	"	SELECT 	SUBSTR(TRXDAT, 1, 4) AS YEAR, ACNO, 	\r\n" +  
+				    "	(SELECT 	ACNM FROM DATA_AC_INFO SUB_T WHERE T1.ACNO=SUB_T.ACNO) AS ACNM, 	\r\n" +  
+				 	"		SUM(D_AMOUNT-FEE) AS SUM_AMOUNT \r\n" +  
+				 	"	FROM 	(SELECT 	TRXDAT, ACNO, \r\n" +  
+				 	"			CASE WHEN CANCELYN='Y' THEN (AMOUNT*-1) \r\n" +  
+				 	"			ELSE AMOUNT END AS D_AMOUNT, FEE 	\r\n" +  
+					"		FROM DATA_TR_HISTORY ) T1 \r\n" +  
+					"	GROUP BY SUBSTR(TRXDAT, 1, 4), ACNO \r\n" +  
+					") GROUP BY YEAR ORDER BY 1" 
+				+ ""); 
+
 		
 		System.out.println(sql.toString());
 		
