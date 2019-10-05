@@ -21,5 +21,5 @@ public class DbConnUtil {
 		return DriverManager.getConnection("jdbc:sqlite:src/main/resources/static/db/custom.db");
 		
 	}
-
+	
 }

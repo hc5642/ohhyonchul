@@ -1,29 +1,29 @@
 package com.ohc.kakaopay.dao.impl;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.ohc.kakaopay.dao.WorkNumber1Dao;
 import com.ohc.kakaopay.dao.vo.WorkNumber1Vo;
-import com.ohc.kakaopay.util.DbConnUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class WorkNumber1DaoImpl implements WorkNumber1Dao{
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
 	@Override
 	public List<WorkNumber1Vo> doWork() {
 		
-		Connection conn = null; 
-		Statement stat = null; 
-		ResultSet rs = null;
-		WorkNumber1Vo vo = null;
-		
-		List<WorkNumber1Vo> retValue = new ArrayList<WorkNumber1Vo>();
 		StringBuffer sql = new StringBuffer("/*1. 2018년, 2019년 각 연도별 합계 금액이 가장 많은 고객을 추출하는 API 개발 */\n");
 		sql.append("SELECT YEAR, ACNM, ACNO, MAX(SUM_AMOUNT) AS MAX_AMOUNT \r\n" +  
 				 	"FROM (\r\n" +  
@@ -38,37 +38,20 @@ public class WorkNumber1DaoImpl implements WorkNumber1Dao{
 					") GROUP BY YEAR ORDER BY 1" 
 				+ ""); 
 
+		log.info(sql.toString());
 		
-		System.out.println(sql.toString());
-		
-		try {
-			
-			conn = DbConnUtil.getInstance().getConnection();
-			stat =  conn.createStatement();
-			rs = stat.executeQuery(sql.toString());
-			
-			while ( rs.next() ) {
-				vo = new WorkNumber1Vo();
+		return jdbcTemplate.query(sql.toString(), new RowMapper<WorkNumber1Vo>() {
+			@Override
+			public WorkNumber1Vo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				WorkNumber1Vo vo = new WorkNumber1Vo();
 				vo.setYear(rs.getString("YEAR"));
 				vo.setName(rs.getString("ACNM"));
 				vo.setAcctNo(rs.getString("ACNO"));
 				vo.setSumAmt(rs.getString("MAX_AMOUNT"));
-				retValue.add(vo);
+				return vo;
 			}
-			
-		} catch ( SQLException e ) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if ( rs != null ) rs.close();
-				if ( stat != null ) stat.close();
-				if ( conn != null ) conn.close();
-			} catch ( Exception e ) {}
-		}
+		});
 		
-		return retValue;
 	}
-
+	
 }

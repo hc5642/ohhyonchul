@@ -7,17 +7,58 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.ohc.kakaopay.dao.WorkNumber2Dao;
+import com.ohc.kakaopay.dao.vo.WorkNumber1Vo;
 import com.ohc.kakaopay.dao.vo.WorkNumber2Vo;
 import com.ohc.kakaopay.util.DbConnUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class WorkNumber2DaoImpl implements WorkNumber2Dao{
 	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
 	@Override
 	public List<WorkNumber2Vo> doWork() {
+		
+		StringBuffer sql = new StringBuffer("/*2. 2018년 또는 2019년에 거래가 없는 고객을 추출하는 API 개발. */\n");
+		sql.append("SELECT SUBSTR(Z.MOM_DATA,1,4), SUBSTR(Z.MOM_DATA,6),\r\n" + 
+				"	(SELECT ACNM FROM DATA_AC_INFO T WHERE T.ACNO=SUBSTR(Z.MOM_DATA,6))\r\n" + 
+				"FROM (\r\n" + 
+				"	SELECT DISTINCT SUBSTR(A.TRXDAT, 1, 4) || '_' || B.ACNO AS MOM_DATA\r\n" + 
+				"	FROM DATA_TR_HISTORY A, DATA_AC_INFO B\r\n" + 
+				") Z LEFT OUTER JOIN (\r\n" + 
+				"	SELECT	SUBSTR(TRXDAT, 1, 4) || '_' || ACNO AS MOM_DATA\r\n" + 
+				"	FROM 	DATA_TR_HISTORY\r\n" + 
+				"	WHERE 	CANCELYN='N'\r\n" + 
+				") Y\r\n" + 
+				"ON Z.MOM_DATA=Y.MOM_DATA\r\n" + 
+				"WHERE Y.MOM_DATA IS NULL");
+		
+		log.info(sql.toString());
+		
+		return jdbcTemplate.query(sql.toString(), new RowMapper<WorkNumber2Vo>() {
+			@Override
+			public WorkNumber2Vo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				WorkNumber2Vo vo = new WorkNumber2Vo();
+				vo.setYear(rs.getString(1));
+				vo.setAcctNo(rs.getString(2));
+				vo.setName(rs.getString(3));
+				return vo;
+			}
+		});
+		
+	}
+	
+	public List<WorkNumber2Vo> doWork2() {
 		
 		Connection conn = null; 
 		Statement stat = null; 
@@ -39,7 +80,7 @@ public class WorkNumber2DaoImpl implements WorkNumber2Dao{
 				"ON Z.MOM_DATA=Y.MOM_DATA\r\n" + 
 				"WHERE Y.MOM_DATA IS NULL");
 		
-		System.out.println(sql.toString());
+		log.info(sql.toString());
 		
 		try {
 			

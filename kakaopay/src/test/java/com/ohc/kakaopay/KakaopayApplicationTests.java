@@ -15,6 +15,9 @@ import com.ohc.kakaopay.dao.WorkNumber2Dao;
 import com.ohc.kakaopay.dao.vo.WorkNumber1Vo;
 import com.ohc.kakaopay.dao.vo.WorkNumber2Vo;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class KakaopayApplicationTests {
@@ -34,7 +37,7 @@ public class KakaopayApplicationTests {
 	public void work1Test() {
 		// 결과 2018년은 주디, 2019년은 에이스
 		List<WorkNumber1Vo> list = dao1.doWork();
-		System.out.println("###1.결과" + dao1.doWork());
+		log.info("###1.결과" + dao1.doWork());
 		assertEquals(2, list.size());
 		assertEquals("11111119", list.get(0).getAcctNo()); // 2018
 		assertEquals("11111112", list.get(1).getAcctNo()); // 2019
@@ -47,7 +50,7 @@ public class KakaopayApplicationTests {
 	@Test
 	public void work2Test() {
 		List<WorkNumber2Vo> list = dao2.doWork();
-		System.out.println("###2.결과" + dao2.doWork());
+		log.info("###2.결과" + dao2.doWork());
 		assertEquals(4, list.size());
 		assertEquals("11111115", list.get(0).getAcctNo()); // 2018
 		assertEquals("11111118", list.get(1).getAcctNo()); // 2018

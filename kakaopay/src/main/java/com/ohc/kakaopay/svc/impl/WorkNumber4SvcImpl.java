@@ -9,6 +9,9 @@ import com.ohc.kakaopay.dao.WorkNumber4Dao;
 import com.ohc.kakaopay.dao.vo.WorkNumber4Vo;
 import com.ohc.kakaopay.svc.WorkNumber4Svc;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SuppressWarnings("unchecked")
 @Service
 public class WorkNumber4SvcImpl implements WorkNumber4Svc{
@@ -22,7 +25,7 @@ public class WorkNumber4SvcImpl implements WorkNumber4Svc{
 	public String doWork(String input) {
 		
 		JSONObject obj = new JSONObject();
-		System.out.println("input 값 테스트 " + input);
+		log.info("input 값 테스트 = [" + input + "]");
 		
 		try {
 			JSONParser parser = new JSONParser();
