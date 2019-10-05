@@ -3,9 +3,11 @@ package com.ohc.kakaopay.svc;
 
 import org.springframework.stereotype.Service;
 
+import com.ohc.kakaopay.dao.vo.WorkNumber4Vo;
+
 @Service
 public interface WorkNumber4Svc {
 	
-	public String doWork(String brName);
+	public WorkNumber4Vo doWork(String brName);
 	
 }

@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ohc.kakaopay.dao.WorkNumber1Dao;
-import com.ohc.kakaopay.dao.WorkNumber2Dao;
 import com.ohc.kakaopay.dao.vo.WorkNumber1Vo;
 import com.ohc.kakaopay.dao.vo.WorkNumber2Vo;
+import com.ohc.kakaopay.svc.WorkNumber1Svc;
+import com.ohc.kakaopay.svc.WorkNumber2Svc;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,8 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class KakaopayApplicationTests {
 	
-	@Autowired private WorkNumber1Dao dao1;
-	@Autowired private WorkNumber2Dao dao2;
+	@Autowired private WorkNumber1Svc svc1;
+	@Autowired private WorkNumber2Svc svc2;
 
 	@Test
 	public void contextLoads() {
@@ -35,12 +35,11 @@ public class KakaopayApplicationTests {
 	 */
 	@Test
 	public void work1Test() {
-		// 결과 2018년은 주디, 2019년은 에이스
-		List<WorkNumber1Vo> list = dao1.doWork();
-		log.info("###1.결과" + dao1.doWork());
+		List<WorkNumber1Vo> list = svc1.doWork();
+		log.info("###1.결과" + list);
 		assertEquals(2, list.size());
-		assertEquals("11111119", list.get(0).getAcctNo()); // 2018
-		assertEquals("11111112", list.get(1).getAcctNo()); // 2019
+		assertEquals("11111119", list.get(0).getAcctNo()); // 2018 주디
+		assertEquals("11111112", list.get(1).getAcctNo()); // 2019 에이스
 	}
 	
 	/**
@@ -49,13 +48,13 @@ public class KakaopayApplicationTests {
 	 */
 	@Test
 	public void work2Test() {
-		List<WorkNumber2Vo> list = dao2.doWork();
-		log.info("###2.결과" + dao2.doWork());
+		List<WorkNumber2Vo> list = svc2.doWork();
+		log.info("###2.결과" + list);
 		assertEquals(4, list.size());
-		assertEquals("11111115", list.get(0).getAcctNo()); // 2018
-		assertEquals("11111118", list.get(1).getAcctNo()); // 2018
-		assertEquals("11111114", list.get(2).getAcctNo()); // 2019
-		assertEquals("11111118", list.get(3).getAcctNo()); // 2019
+		assertEquals("11111115", list.get(0).getAcctNo()); // 2018 사라
+		assertEquals("11111118", list.get(1).getAcctNo()); // 2018 제임스
+		assertEquals("11111114", list.get(2).getAcctNo()); // 2019 테드
+		assertEquals("11111118", list.get(3).getAcctNo()); // 2019 제임스
 	}
 	
 
