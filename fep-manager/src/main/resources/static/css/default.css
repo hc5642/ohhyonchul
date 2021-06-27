@@ -1,0 +1,10 @@
+@font-face { font-family: d2coding; src: url(/font/D2Coding.woff2); }
+body { font-family: d2coding; font-size: 10pt;}
+input[type=text] { font-family: d2coding; padding: 0px 0px; margin: 0px 0; border: 1px solid #CCCCCC; }
+input[type=button] { font-family: d2coding; border: 1px solid #CCCCCC; }
+select { font-family: d2coding; border: 1px solid #CCCCCC; }
+textarea { font-family: d2coding; font-size: 10pt; border: 1px solid #CCCCCC; width: 95%; height: 450px; border: 0px;}
+table { width: 100%; border-collapse: collapse; }
+tr { border: 0px solid #CCCCCC; } 
+th { border: 1px solid #CCCCCC; padding: 5px; text-align: center; font-weight: bold; background-color: #f9f9f9; } 
+td { border: 1px solid #CCCCCC; padding: 5px; text-align: center; }

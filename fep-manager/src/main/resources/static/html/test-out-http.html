@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@font-face { font-family: d2coding; src: url(/font/D2Coding.eot); }
+body { font-family: d2coding; font-size: 10pt;}
+input[type=text] { font-family: d2coding; padding: 0px 0px; margin: 0px 0; border: 1px solid #CCCCCC; }
+input[type=button] { font-family: d2coding; border: 1px solid #CCCCCC; }
+textarea { font-family: d2coding; font-size: 10pt; border: 1px solid #CCCCCC;}
+table { width: 100%; border-collapse: collapse; }
+tr { border: 0px solid #CCCCCC; } 
+th { border: 1px solid #CCCCCC; padding: 5px; text-align: center; font-weight: bold; background-color: #f9f9f9; } 
+td { border: 1px solid #CCCCCC; padding: 5px; text-align: center; }
+</style>
+</head>
+<body>
+<h1>TEST OUT for HTTP</h1>
+<form name="frm" action="./test-out-http" method="POST">
+<h3>TARGET INFO</h3>
+<ul>
+	<li>요청 메시지 작</li>
+</ul>
+<blockquote>
+<table>
+<tr>
+	<th colspan="2">SOURCE MSG</th>
+</tr>
+<tr>
+	<td>TARGET URL</td>
+	<td><input type="text" name="req_url" style="width: 95%;"/></td>
+</tr>
+<tr>
+	<td>HEADERS</td>
+	<td><input type="text" name="req_headers" style="width: 95%;"/></td>
+</tr>
+<tr>
+	<td>
+		BODY<br/>
+		<select name="req_type" >
+			<option value="string">STRING</option>
+			<option value="byte">BYTE</option>
+		</select>
+	</td>
+	<td>
+		<textarea style="width: 100%;" name="req_data"></textarea>
+		<input type="submit" value="SEND" />
+	</td>
+</tr>
+</table>
+</blockquote>
+</form>
+<ul>
+	<li>전송 : <input type="submit" value="SUBMIT" /></li>
+</ul>
+<h3>RESPONSE INFO</h3>
+<UL>
+	<li>HTTP RESPONSE CODE : ${res_code}</li>
+	<li>HTTP HEADERS : $res_headers}{</li>
+	<li>HTTP BODY : ${res_body}</li>
+</UL>
+</body>
+</html>

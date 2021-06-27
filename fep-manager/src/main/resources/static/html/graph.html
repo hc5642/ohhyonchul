@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>FEP VOLUME GRAPH(금융결제원)</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css" />
+<link rel="stylesheet" type="text/css" href="/css/jquery.jqplot.min.css" />
+<script type="text/javascript" src="/js/excanvas.min.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.jqplot.min.js"></script>
+<script type="text/javascript">
+$(document).ready(
+	function() {
+		$.jqplot('chartdiv', [
+			[
+				[ 1.1, 2 ], [ 3.2, 23 ], [ 5.3, 13 ], [ 7.0, 33 ],[ 9.4, 85 ], [ 11.1, 219 ] 
+			],
+			[ 	
+				[ 3.1, 5 ], [ 5.1, 7 ], [ 7.1, 17 ], [ 9.1, 38 ],[ 11.1, 86 ], [ 13.5, 233 ] 
+			] 
+		], {
+			series:[
+				{label:'전자금융공동망'},
+				{label:'타행환공동망'}
+			],
+			legend:{
+				show:true,
+				location:'ne',
+				placement:'inside'
+			},
+			axes:{
+				xaxis:{
+					tickOptions:{
+						formatString:"%'d",
+						fontSize: '8pt'
+					},
+					min : 0,
+					max : 24,
+					numberTicks : 24
+				},
+				yaxis:{
+					tickOptions:{
+						formatString:"%'d",
+						fontSize: '8pt'
+					},
+					min : 0,
+					numberTicks : 10
+				}
+			}
+		});
+	}
+);
+</script>
+</head>
+<body>
+	<h1>FEP VOLUME GRAPH(금융결제원)</h1>
+	<ul>
+		<li>기관코드 : <input type="text" name="instcode"> | 대상일자 : <select name="targetYmd">
+			<option value="2021-02-28">2021-02-28</option>
+		</select></li>
+	</ul>
+	<blockquote>
+		<div id="chartdiv" style="width: 100%; height: 400px;"></div>
+	</blockquote>
+</body>
+</html>
+
+<!-- 
+table schema 
+
+fep volume data - 1분당 업무 거래량 테이블
+ - 데이터량 하루 1440 * 업무개수(50개?) = 72000 row * 365 = 26,280,000 row
+
+key : yyyy-mm-dd + HH:mm + inst_code + appl_code
+
+yyyy-mm-dd | HH:mm  | inst_code | appl_code | count
+
+2021-02-28 | 00:00 | 099 | 012I | 3
+2021-02-28 | 00:00 | 099 | 012O | 2
+2021-02-28 | 00:00 | 099 | 012M | 1 
+2021-02-28 | 00:00 | 099 | 015O | 1
+2021-02-28 | 00:00 | 099 | 015I | 1
+...
+2021-02-28 | 00:01 | 099 | 012I | 3
+
+
+
+
+ -->

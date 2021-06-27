@@ -1,0 +1,39 @@
+spring:
+  profiles:
+    active: local
+
+--- # 로컬 환경
+
+server:
+  port: 8081
+  
+spring:
+  profiles: local
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mysql?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: 123456
+
+--- # 스테이징
+
+server:
+  port: 8082
+  
+spring:
+  profiles: stag
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mysql?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: 123456

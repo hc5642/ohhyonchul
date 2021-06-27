@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>FEP VOLUME GRAPH(APP)</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css" />
+<link rel="stylesheet" type="text/css" href="/css/jquery.jqplot.min.css" />
+<script type="text/javascript" src="/js/excanvas.min.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="/js/jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript" src="/js/jqplot.highlighter.min.js"></script>
+<script type="text/javascript">
+$(document).ready(
+	function() {
+		$.jqplot('chartdiv', [
+			[
+				[ '2000-01-01 06:05', 2 ], [ '2000-01-01 06:09', 23 ], [ '2000-01-01 06:15', 13 ], [ '2000-01-01 06:17', 33 ],[ '2000-01-01 07:19', 85 ], [ '2000-01-01 08:21', 219 ] 
+			],
+			[ 	
+				[ '2000-01-01 06:06', 5 ], [ '2000-01-01 06:11', 7 ], [ '2000-01-01 06:15', 17 ], [ '2000-01-01 06:06', 38 ],[ '2000-01-01 06:18', 86 ], [ '2000-01-01 09:20', 233 ] 
+			] 
+		]
+		,{
+			title: {text: '금융결제원(099) 전자금융공동망(012I;012O) 분당거래량', fontFamily: 'd2coding'}
+			,seriesDefaults:{ markerOptions: { size: 3 } }
+			,series:[
+				{label:'2020-12-31'},
+				{label:'2021-02-28',fill: true,fillAndStroke: true,fillAlpha: 0.2}
+			]
+			,pointLabels:{show: true}
+			,legend:{show:true,location:'ne',placement:'insideGrid'}
+			,axes:{
+				xaxis:{
+					renderer:$.jqplot.DateAxisRenderer
+					,tickOptions:{formatString:'%H:%M'}
+					,min : '2000-01-01 00:00'
+					,max : '2000-01-01 24:00'
+					,numberTicks : 25
+				}
+				,yaxis:{tickOptions:{formatString:"%'d"},min:0,max:500,numberTicks:10}
+			}
+			,highlighter: {show: true}
+			,cursor: {show: false}
+		});
+	}
+);
+</script>
+</head>
+<body>
+	<h1>FEP TRANSACTION VOLUME GRAPH(기간별)</h1>
+	<ul>
+		<li>
+			그래프선택 : 
+			<input type="radio" name="graph1" checked/> 전체거래량(역대급대비)
+			<input type="radio" name="graph1" /> 기관별 업무거래량(역대급대비)
+			<input type="radio" name="graph1" /> 업무별 기간거래량
+		</li>
+		<li>
+			기관코드 : <input type="text" name="instcode" value="" style="width: 30px;"> | 
+			업무코드 : <input type="text" name="applcode" style="width: 30px;"> | 
+			기준일자 : <input type="text" name="startdate" value="2021-02-28"> | 
+			종료일자 : <input type="text" name="enddata"> |
+			<input type="submit" value="SUBMIT" />
+		</li>
+	</ul>
+	<blockquote>
+		<div id="chartdiv" style="width: 100%; height: 400px;"></div>
+	</blockquote>
+</body>
+</html>
+
+<!-- 
+table schema 
+
+fep volume data - 1분당 업무 거래량 테이블
+ - 데이터량 하루 1440 * 업무개수(50개?) = 72000 row * 365 = 26,280,000 row
+
+key : yyyy-mm-dd + HH:mm + inst_code + appl_code
+
+yyyy-mm-dd | HH:mm  | inst_code | appl_code | count
+
+2021-02-28 | 00:00 | 099 | 012I | 3
+2021-02-28 | 00:00 | 099 | 012O | 2
+2021-02-28 | 00:00 | 099 | 012M | 1 
+2021-02-28 | 00:00 | 099 | 015O | 1
+2021-02-28 | 00:00 | 099 | 015I | 1
+...
+2021-02-28 | 00:01 | 099 | 012I | 3
+
+
+
+
+ -->

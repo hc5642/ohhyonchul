@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@font-face { font-family: d2coding; src: url(/font/D2Coding.woff); }
+body { font-family: d2coding, applegothic; font-size: 10pt;}
+input { font-family: d2coding, applegothic; font-size: 10pt;}
+.headercolumn { border: 0px;width: 98%; color: blue; }
+</style>
+<script>
+function toggleView() {
+	var area = document.getElementById("toggle");
+	if ( area.style.display == "" || area.style.display == "block" ) {
+		area.style.display = "none";
+	} else {
+		area.style.display = "block";
+	}
+}
+function init() {
+	var input = "1234567890";
+	var colsize = [3,3,4];
+	var pointer = 0;
+	var targetcol = document.getElementsByName("comHeadercols");
+	for ( var i=0; i < targetcol.length; i++ ) {
+		targetcol[i].value = "[" + input.substr(pointer,colsize[i]) + "]";
+		pointer += colsize[i];
+	}
+	document.getElementById("toggle").style.display = "none";
+	document.getElementById("chkbox").checked = false;
+}
+function goBotton(item) {
+	document.body.scrollIntoView(item);
+}
+</script>
+</head>
+<body onload="init();">
+<h1>DISABLE TEST</h1>
+<ul>
+	<li>INPUT BUTTON :  <input type="button" value="TOGGLE" onclick="toggleView();"/>
+	<input type="button" value="맨밑으로" onclick="goBotton(false);"/> 
+	<input type="checkbox" id="chkbox" checked/>TEST
+</ul>
+<blockquote id="toggle">
+<table style="width: 100%" border="1">
+<tr>
+	<th>NAME</th>
+	<th>VALUE</th>
+</tr>
+<tr>
+	<td>length</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn" /></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+<tr>
+	<td>TEST1</td>
+	<td><input type="text" name="comHeadercols" class="headercolumn"/></td>
+</tr>
+</table>
+</blockquote>
+<input type="button" value="맨위로" onclick="goBotton(true);"/>
+</body>
+</html>

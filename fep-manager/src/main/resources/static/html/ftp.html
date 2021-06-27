@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@font-face { font-family: d2coding; src: url(/font/D2Coding.woff2); }
+body { font-family: d2coding; font-size: 10pt;}
+input[type=text] { font-family: d2coding; padding: 0px 0px; margin: 0px 0; border: 1px solid #CCCCCC; }
+input[type=button] { font-family: d2coding; border: 1px solid #CCCCCC; }
+textarea { font-family: d2coding; font-size: 10pt; border: 1px solid #CCCCCC; width: 95%; height: 450px; border: 0px;}
+table { width: 100%; border-collapse: collapse; }
+tr { border: 0px solid #CCCCCC; } 
+th { border: 1px solid #CCCCCC; padding: 5px; text-align: center; font-weight: bold; background-color: #f9f9f9; } 
+td { border: 1px solid #CCCCCC; padding: 5px; text-align: center; }
+</style>
+<script>
+function getdata(domainname, pathname, viewname) {
+	var domain = "http://localhost:8081";
+	if ( domainname === "stage")
+		domain = "http://localhost:8081";
+	else if ( domainname === "prod" ) 
+		domain = "http://localhost:8081";
+	frm.action = domain + "/ftp/list";
+	frm.path.value = document.getElementById(pathname).value;
+	frm.target = viewname;
+	frm.submit();
+}
+function copypath() {
+	var basepath = document.getElementById("basepath").value;
+	document.getElementById("view1path").value = basepath;
+	document.getElementById("view2path").value = basepath;
+	document.getElementById("view3path").value = basepath;
+}
+</script>
+</head>
+<body>
+<h1>FEP SERVER VIEWER</h1>
+<ul>
+	<li>
+		BASE PATH : <input type="text" id="basepath" value="/Users/hyonchuloh" onkeyup="copypath();">
+		<input type="button" value="LIST ALL" onclick="copypath(); getdata('dev','view1path','view1'); getdata('stage','view2path','view2');getdata('prod','view3path','view3');" />
+	</li>
+</ul>
+<blockquote>
+<table>
+<tr>
+	<th style="width: 33%;">
+		DEV <input type="text" id="view1path" value="/Users/hyonchuloh" />
+		<input type="button" value="LIST" onclick="getdata('dev','view1path','view1');" />
+	</th>
+	<th style="width: 33%;">
+		STAGE <input type="text" id="view2path" value="/Users/hyonchuloh" />
+		<input type="button" value="LIST" onclick="getdata('stage','view2path','view2');" />
+	</th>
+	<th style="width: 33%;">
+		PROD <input type="text" id="view3path" value="/Users/hyonchuloh" />
+		<input type="button" value="LIST" onclick="getdata('prod','view3path','view3');" />
+	</th>
+</tr>
+<tr style="height: 500px;vertical-align : top;">
+	<td>
+		<iframe src="" name="view1" style="width: 100%; height: 600px; border: 0px;" ></iframe>
+	</td>
+	<td>
+		<iframe src="" name="view2" style="width: 100%; height: 600px; border: 0px;"></iframe>
+	</td>
+	<td>
+		<iframe src="" name="view3" style="width: 100%; height: 600px; border: 0px;"></iframe>
+	</td>
+</tr>
+</table>
+</blockquote>
+<form name="frm" action="/ftp/list" method="post">
+	<input type="hidden" name="path" value="" />
+</form>
+</body>
+</html>

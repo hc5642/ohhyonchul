@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@font-face { font-family: d2coding; src: url(/font/D2Coding.eot); }
+body { font-family: d2coding; font-size: 10pt;}
+input[type=text] { font-family: d2coding; padding: 0px 0px; margin: 0px 0; border: 1px solid #CCCCCC; }
+input[type=button] { font-family: d2coding; border: 1px solid #CCCCCC; }
+textarea { font-family: d2coding; font-size: 10pt; border: 1px solid #CCCCCC;}
+table { width: 100%; border-collapse: collapse; }
+tr { border: 0px solid #CCCCCC; } 
+th { border: 1px solid #CCCCCC; padding: 5px; text-align: center; font-weight: bold; background-color: #f9f9f9; } 
+td { border: 1px solid #CCCCCC; padding: 5px; text-align: center;}
+</style>
+<script>
+function test() {
+	
+	alert('test');
+	var button = document.getElementsByTagName("input");
+	for ( var i=0; i<button.length; i++) {
+		button[i].disabled='disabled';
+	}
+}
+</script>
+</head>
+<body>
+<h1>FEP FILE MANAGER</h1>
+<h3>은행연합회 선택 수신</h3>
+<ul>
+	<li>INPUT FILE CODE : <input type="text"/></li>
+	<li>INPUT ODATE : <input type="text" /></li>
+	<li>SEND : <input type="button" value="SEND" onclick="test();" /></li>
+</ul>
+<h3>파일 내부로 재처리</h3>
+<ul>
+	<li>INPUT FILE CODE : <input type="text"/></li>
+	<li>INPUT ODATE : <input type="text" /></li>
+	<li>SEND : <input type="button" /></li>
+</ul>
+</body>
+</html>
