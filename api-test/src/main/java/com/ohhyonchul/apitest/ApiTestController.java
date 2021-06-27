@@ -8,6 +8,6 @@ public class ApiTestController {
 	
 	@RequestMapping("/hello")
 	public String hello() {
-		return "hello!";
+		return "hello!!";
 	}
 }
