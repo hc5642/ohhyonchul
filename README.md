@@ -1,5 +1,5 @@
 # ohhyonchul
-오현철 샘플 리파지토리 변경 (카카오페이 제출용 > 개인 리파지토리용)
+오현철 개인 리파지토리
 
 # 2019. 10. 6 commit
  - jdbcTemplate 변경
@@ -23,5 +23,4 @@
 
 ## 빌드 및 실행 방법
  1) com.ohc.kakaopay.KakaopayApplication.class 를 실행하여 웹을 구동후 URL접속으로 테스트
- - 구동 후에 브라우저에서 http://localhost:8080/work/1 ~ 4 번까지 get 방식으로 접근하여 테스트 가능
  2) src/test/java 소스 폴더에 com.ohc.kakaopay.KakaopayApplicationTest.class를 실행하여 Junit으로 테스트 가능
