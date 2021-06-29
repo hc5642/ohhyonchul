@@ -3,6 +3,9 @@ package com.ohhyonchul.apitest.svc;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ApiTestPoiSvcImpl implements ApiTestPoiSvc {
 	
 	@Override
